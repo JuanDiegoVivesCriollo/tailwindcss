@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Página de Enseñanza Tailwind CSS - Tutorial Completo con Ejemplos</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                50: '#eff6ff',
+                100: '#dbeafe',
+                200: '#bfdbfe',
+                500: '#3b82f6',
+                600: '#2563eb',
+                700: '#1d4ed8',
+              },
+              accent: {
+                500: '#f59e0b',
+                600: '#d97706',
+              },
+            },
+            fontFamily: {
+              sans: ['Inter', 'ui-sans-serif', 'system-ui'],
+            },
+            boxShadow: {
+              soft: '0 10px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1)',
+            },
+          },
+        },
+      };
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
+  </head>
+
+  <body class="bg-gray-50 text-gray-800 font-sans">
+    <nav
+      class="bg-white/90 backdrop-blur border-b border-gray-200 sticky top-0 z-50"
+      role="navigation"
+      aria-label="Principal"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex h-16 items-center justify-between">
+          <a href="#" class="flex items-center gap-3" aria-label="Inicio">
+            <div
+              class="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-600 to-purple-600 flex items-center justify-center text-white font-bold"
+            >
+              TW
+            </div>
+            <span class="text-lg font-semibold">Tailwind Enseñanza</span>
+          </a>
+
+          <div class="hidden md:flex items-center gap-6">
+            <a href="#hero" class="text-gray-600 hover:text-brand-600">Inicio</a>
+            <a href="#buttons" class="text-gray-600 hover:text-brand-600">Botones</a>
+            <a href="#cards" class="text-gray-600 hover:text-brand-600">Cards</a>
+            <a href="#carousel" class="text-gray-600 hover:text-brand-600">Carrusel</a>
+            <a href="#form" class="text-gray-600 hover:text-brand-600">Formulario</a>
+
+            <a
+              href="#contacto"
+              class="px-4 py-2 rounded-lg bg-brand-600 hover:bg-brand-700 text-white font-medium shadow-soft"
+              >Empezar</a
+            >
+          </div>
+
+          <button
+            id="menuBtn"
+            class="md:hidden p-2 rounded-lg hover:bg-gray-100"
+            aria-label="Abrir menú"
+            aria-expanded="false"
+            aria-controls="mobileMenu"
+          >
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div id="mobileMenu" class="md:hidden hidden border-t border-gray-200 bg-white" role="menu">
+        <div class="px-4 py-3 space-y-2">
+          <a href="#hero" class="block px-3 py-2 rounded hover:bg-gray-100" role="menuitem">Inicio</a>
+          <a href="#buttons" class="block px-3 py-2 rounded hover:bg-gray-100" role="menuitem">Botones</a>
+          <a href="#cards" class="block px-3 py-2 rounded hover:bg-gray-100" role="menuitem">Cards</a>
+          <a href="#carousel" class="block px-3 py-2 rounded hover:bg-gray-100" role="menuitem">Carrusel</a>
+          <a href="#form" class="block px-3 py-2 rounded hover:bg-gray-100" role="menuitem">Formulario</a>
+          <a href="#contacto" class="block px-3 py-2 rounded bg-brand-600 text-white text-center hover:bg-brand-700" role="menuitem">Empezar</a>
+        </div>
+      </div>
+    </nav>
+
+    <script>
+      const menuBtn = document.getElementById('menuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      
+      menuBtn?.addEventListener('click', () => {
+        const isExpanded = menuBtn.getAttribute('aria-expanded') === 'true';
+        menuBtn.setAttribute('aria-expanded', String(!isExpanded));
+        mobileMenu.classList.toggle('hidden');
+      });
+    </script>
+
+    <header id="hero" class="bg-gradient-to-b from-white to-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="grid md:grid-cols-2 gap-10 items-center">
+          <div>
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-gray-900">
+              Diseña interfaces hermosas con
+              <span class="text-brand-600">Tailwind CSS</span>
+            </h1>
+            <p class="mt-4 text-gray-600 text-lg">
+              Utility-first para construir rápido, consistente y accesible.
+              Aprende los patrones que usan los equipos modernos.
+            </p>
+            <div class="mt-6 flex flex-wrap gap-3">
+              <a
+                href="#buttons"
+                class="px-6 py-3 rounded-xl bg-brand-600 text-white font-semibold shadow-soft hover:bg-brand-700"
+                >Ver botones</a
+              >
+              <a
+                href="#cards"
+                class="px-6 py-3 rounded-xl border border-gray-300 text-gray-700 hover:bg-gray-100"
+                >Ver cards</a
+              >
+            </div>
+          </div>
+
+          <div class="relative">
+            <div
+              class="aspect-[4/3] rounded-2xl bg-white shadow-soft border border-gray-200 flex items-center justify-center"
+            >
+              <span class="text-gray-400">Aquí iría tu imagen hero principal</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section id="buttons" class="py-14">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-2xl font-bold mb-6">Botones Modernos con Estados Interactivos</h2>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <button
+            class="px-6 py-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-semibold shadow-soft focus:outline-none focus:ring-4 focus:ring-brand-300"
+          >
+            Primary Button
+          </button>
+
+          <button class="px-6 py-3 rounded-xl bg-white border border-gray-300 text-gray-800 hover:bg-gray-50 font-semibold shadow-soft">
+            Secondary Button
+          </button>
+
+          <button class="px-6 py-3 rounded-xl text-white font-semibold shadow-soft bg-gradient-to-r from-brand-600 to-purple-600 hover:from-brand-700 hover:to-purple-700">
+            Gradient Button
+          </button>
+
+          <button class="px-6 py-3 rounded-xl text-brand-700 hover:text-brand-800 border border-brand-200 hover:bg-brand-50 font-semibold">
+            Ghost Button
+          </button>
+
+          <button class="px-6 py-3 rounded-xl bg-red-600 hover:bg-red-700 text-white font-semibold shadow-soft">
+            Danger Button
+          </button>
+
+          <button class="px-6 py-3 rounded-xl bg-purple-600 text-white font-semibold inline-flex items-center gap-2">
+            <svg class="animate-spin h-5 w-5 text-white" viewBox="0 0 24 24" aria-hidden="true">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+            </svg>
+            Loading…
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section id="cards" class="py-14 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-2xl font-bold mb-6">Cards con microinteracciones</h2>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <article class="group bg-white rounded-2xl shadow-soft border border-gray-200 overflow-hidden">
+            <div class="relative h-44 overflow-hidden">
+              <img
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop"
+                alt="Workspace"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              <span class="absolute top-3 left-3 px-3 py-1 text-xs rounded-full bg-white/90">UI/UX</span>
+            </div>
+            <div class="p-5">
+              <h3 class="text-lg font-semibold mb-1 group-hover:text-brand-600 transition-colors">Diseño que convierte</h3>
+              <p class="text-gray-600 text-sm">Jerarquía, contraste y acciones claras: la base de interfaces efectivas.</p>
+              <div class="mt-4 flex items-center justify-between">
+                <span class="text-sm text-gray-500">5 min read</span>
+                <a class="text-brand-600 hover:text-brand-700 font-medium" href="#">Leer más →</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="group bg-white rounded-2xl shadow-soft border border-gray-200 overflow-hidden">
+            <div class="relative h-44 overflow-hidden">
+              <img
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200&auto=format&fit=crop"
+                alt="Colors"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              <span class="absolute top-3 left-3 px-3 py-1 text-xs rounded-full bg-white/90">Color</span>
+            </div>
+            <div class="p-5">
+              <h3 class="text-lg font-semibold mb-1 group-hover:text-brand-600 transition-colors">Paletas accesibles</h3>
+              <p class="text-gray-600 text-sm">Contraste correcto (WCAG AA) y uso del color sin excluir usuarios.</p>
+              <div class="mt-4 flex items-center justify-between">
+                <span class="text-sm text-gray-500">7 min read</span>
+                <a class="text-brand-600 hover:text-brand-700 font-medium" href="#">Leer más →</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="group bg-white rounded-2xl shadow-soft border border-gray-200 overflow-hidden">
+            <div class="relative h-44 overflow-hidden">
+              <img
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1200&auto=format&fit=crop"
+                alt="Team"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              <span class="absolute top-3 left-3 px-3 py-1 text-xs rounded-full bg-white/90">Patrones</span>
+            </div>
+            <div class="p-5">
+              <h3 class="text-lg font-semibold mb-1 group-hover:text-brand-600 transition-colors">Componentes reutilizables</h3>
+              <p class="text-gray-600 text-sm">Piensa en roles: botón primario, secundario, ghost; crea variantes con utilidades.</p>
+              <div class="mt-4 flex items-center justify-between">
+                <span class="text-sm text-gray-500">6 min read</span>
+                <a class="text-brand-600 hover:text-brand-700 font-medium" href="#">Leer más →</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="carousel" class="py-14">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-2xl font-bold mb-6">Carrusel Interactivo con Transiciones</h2>
+        
+        <div class="relative overflow-hidden rounded-2xl border border-gray-200 shadow-soft">
+          <div class="h-56 md:h-80 bg-black relative">
+            <div class="absolute inset-0 transition-transform duration-500 ease-out" data-slide="0">
+              <img 
+                class="w-full h-full object-cover opacity-75" 
+                src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1600&auto=format&fit=crop" 
+                alt="Tecnología moderna - Slide 1" 
+              />
+            </div>
+            
+            <div class="absolute inset-0 transition-transform duration-500 ease-out" data-slide="1">
+              <img 
+                class="w-full h-full object-cover opacity-75" 
+                src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?q=80&w=1600&auto=format&fit=crop" 
+                alt="Desarrollo de software - Slide 2" 
+              />
+            </div>
+            
+            <div class="absolute inset-0 transition-transform duration-500 ease-out" data-slide="2">
+              <img 
+                class="w-full h-full object-cover opacity-75" 
+                src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1600&auto=format&fit=crop" 
+                alt="Workspace creativo - Slide 3" 
+              />
+            </div>
+          </div>
+
+          <button
+            id="prevBtn"
+            class="absolute left-3 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 p-2 rounded-full shadow"
+            aria-label="Ir al slide anterior"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+
+          <button
+            id="nextBtn"
+            class="absolute right-3 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 p-2 rounded-full shadow"
+            aria-label="Ir al siguiente slide"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+
+          <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
+            <button 
+              class="w-2.5 h-2.5 rounded-full bg-white/70" 
+              data-dot="0" 
+              aria-label="Ir al slide 1">
+            </button>
+            
+            <button 
+              class="w-2.5 h-2.5 rounded-full bg-white/40" 
+              data-dot="1" 
+              aria-label="Ir al slide 2">
+            </button>
+            
+            <button 
+              class="w-2.5 h-2.5 rounded-full bg-white/40" 
+              data-dot="2" 
+              aria-label="Ir al slide 3">
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      const slides = Array.from(document.querySelectorAll('[data-slide]'));
+      const dots = Array.from(document.querySelectorAll('[data-dot]'));
+      let currentIndex = 0;
+
+      function renderSlides() {
+        slides.forEach((slide, index) => {
+          const offset = (index - currentIndex) * 100;
+          slide.style.transform = `translateX(${offset}%)`;
+        });
+        
+        dots.forEach((dot, index) => {
+          dot.classList.toggle('bg-white/70', index === currentIndex);
+          dot.classList.toggle('bg-white/40', index !== currentIndex);
+        });
+      }
+
+      renderSlides();
+
+      document.getElementById('prevBtn')?.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        renderSlides();
+      });
+
+      document.getElementById('nextBtn')?.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % slides.length;
+        renderSlides();
+      });
+
+      dots.forEach((dot) =>
+        dot.addEventListener('click', () => {
+          currentIndex = Number(dot.getAttribute('data-dot')) || 0;
+          renderSlides();
+        })
+      );
+
+      setInterval(() => {
+        currentIndex = (currentIndex + 1) % slides.length;
+        renderSlides();
+      }, 5000);
+    </script>
+
+    <section id="form" class="py-14 bg-white">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-2xl font-bold mb-6">Formulario de Contacto</h2>
+        <form class="bg-gray-50 rounded-2xl border border-gray-200 shadow-soft p-6">
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <label for="nombre" class="block text-sm font-medium text-gray-700">Nombre</label>
+              <input id="nombre" name="nombre" type="text" required class="mt-1 w-full rounded-lg border-gray-300 focus:ring-brand-500 focus:border-brand-500" placeholder="Tu nombre" />
+            </div>
+
+            <div>
+              <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+              <input id="email" name="email" type="email" required class="mt-1 w-full rounded-lg border-gray-300 focus:ring-brand-500 focus:border-brand-500" placeholder="tu@email.com" />
+            </div>
+
+            <div class="md:col-span-2">
+              <label for="asunto" class="block text-sm font-medium text-gray-700">Asunto</label>
+              <input id="asunto" name="asunto" type="text" class="mt-1 w-full rounded-lg border-gray-300 focus:ring-brand-500 focus:border-brand-500" placeholder="¿Cómo podemos ayudarte?" />
+            </div>
+
+            <div class="md:col-span-2">
+              <label for="mensaje" class="block text-sm font-medium text-gray-700">Mensaje</label>
+              <textarea id="mensaje" name="mensaje" rows="5" class="mt-1 w-full rounded-lg border-gray-300 focus:ring-brand-500 focus:border-brand-500" placeholder="Cuéntanos más…"></textarea>
+            </div>
+          </div>
+
+          <div class="mt-6 flex justify-end">
+            <button type="submit" class="px-6 py-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-semibold shadow-soft">
+              Enviar
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="py-10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-2xl font-bold mb-6">Extras</h2>
+
+        <div class="flex items-start gap-3 rounded-xl border border-brand-200 bg-brand-50 p-4 text-brand-700">
+          <svg class="w-5 h-5 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M12 2a10 10 0 100 20 10 10 0 000-20z"/></svg>
+          <p class="text-sm">Este es un ejemplo de alerta informativa con buen contraste y jerarquía.</p>
+        </div>
+
+        <div class="mt-4 flex flex-wrap gap-2">
+          <span class="px-3 py-1 text-xs rounded-full bg-green-100 text-green-700">Success</span>
+          <span class="px-3 py-1 text-xs rounded-full bg-yellow-100 text-yellow-700">Warning</span>
+          <span class="px-3 py-1 text-xs rounded-full bg-red-100 text-red-700">Error</span>
+          <span class="px-3 py-1 text-xs rounded-full bg-blue-100 text-blue-700">Info</span>
+        </div>
+      </div>
+    </section>
+
+    <footer class="border-t border-gray-200 bg-white" id="contacto">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center text-sm text-gray-500">
+        © 2025 Enseñanza Tailwind. Accesible, responsive y moderno.
+      </div>
+    </footer>
+
+  </body>
+</html>
